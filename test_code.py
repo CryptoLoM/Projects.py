@@ -1,7 +1,7 @@
 import unittest
 
-from dumbcode import circle_area
-from dumbcode import pi
+from main import circle_area
+from main import pi
 
 class TestCircleArea(unittest.TestCase):
 
