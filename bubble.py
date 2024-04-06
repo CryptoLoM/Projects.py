@@ -2,9 +2,6 @@ class InputSizeLimitExceeded(Exception):
     pass
 
 
-class ValuesAndTypesError(Exception):
-    pass
-
 
 def bubbleSort(array):
     n = len(array)
