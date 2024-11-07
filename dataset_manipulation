@@ -50,3 +50,39 @@ data_cleaned = remove_outliers(data_cleaned, numeric_columns)
 # Confirm shape after outlier removal
 data_cleaned.shape
 data_cleaned.to_csv("cleaned_dataset.csv", index=False)
+
+data = pd.read_csv("cleaned_dataset.csv")
+
+plt.figure(figsize=(10, 6))
+sns.histplot(data['Popularity'], bins=30, kde=True, color="skyblue")
+plt.title("Popularity Distribution")
+plt.xlabel("Popularity")
+plt.ylabel("Frequency")
+plt.show()
+
+# Apply Min-Max scaling
+scaler = MinMaxScaler()
+min_max_scaled = scaler.fit_transform(data[['Popularity', 'Danceability', 'Energy', 'Tempo']])
+
+# Convert to DataFrame for plotting
+min_max_df = pd.DataFrame(min_max_scaled, columns=['Popularity', 'Danceability', 'Energy', 'Tempo'])
+
+# Plot
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=min_max_df)
+plt.title("Min-Max Normalized Values")
+plt.show()
+
+
+# Apply Z-score normalization
+scaler = StandardScaler()
+z_score_scaled = scaler.fit_transform(data[['Popularity', 'Danceability', 'Energy', 'Tempo']])
+
+# Convert to DataFrame for plotting
+z_score_df = pd.DataFrame(z_score_scaled, columns=['Popularity', 'Danceability', 'Energy', 'Tempo'])
+
+# Plot
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=z_score_df)
+plt.title("Z-score Normalized Values")
+plt.show()
